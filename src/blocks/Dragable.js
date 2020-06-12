@@ -28,6 +28,7 @@ function Dragable({index, children, onDropped}){
 
     return (
         <div draggable="true" 
+            style={{border: '1px solid #333333', marginBottom: '10px'}}
             onDragStart={startDrag}
             onDragEnter={dragEnter} 
             onDragOver={dragOver} 

@@ -1,34 +1,34 @@
 import React, {useState} from 'react';
 import './Builder.css';
 import DisplayBlock from './blocks/DisplayBlock';
-import {createBlock} from './blocks/CreateBlocks';
+import {createBlock} from './blocks/Blocks';
 import Dragable from './blocks/Dragable';
 
 function Builder(){
     const [blocks, setBlocks] = useState([]);
 
-    function onDrop(e, droppedOn = -1){
+    function moveOrCreateBlock(e, droppedOn = -1){
         let blockData = JSON.parse(e.dataTransfer.getData("application/json"));
         
         if (!blockData || ! blockData.action){
             return;
         }
 
+        droppedOn = (droppedOn > -1) ? droppedOn : blocks.length;
+
+        let thisBlock;
+
         if (blockData.action === 'create'){
-            let newBlock = createBlock(blockData.type);
-
-            setBlocks([...blocks, newBlock]);
+            thisBlock = createBlock(blockData.type);
+        } else if (blockData.action === 'move'){
+            thisBlock = blocks.splice(blockData.index, 1)[0];
         }
 
-        if (blockData.action === 'move'){
-            droppedOn = (droppedOn > -1) ? droppedOn : blocks.length - 1;
-            let currentBlock = blocks.splice(blockData.index, 1);
+        let blocksCopy = [...blocks];
+        blocksCopy.splice(droppedOn, 0, thisBlock);
 
-            let blocksCopy = [...blocks];
-            blocksCopy.splice(droppedOn, 0, currentBlock[0]);
+        setBlocks(blocksCopy);
 
-            setBlocks(blocksCopy);
-        }
     }
 
     function onDragOver(e){
@@ -38,9 +38,9 @@ function Builder(){
     return (
         <div className="builder">
             <h2>Builder</h2>
-            <div onDrop={onDrop} onDragOver={onDragOver} className="dropzone">
+            <div onDrop={moveOrCreateBlock} onDragOver={onDragOver} className="dropzone">
                 {blocks.map((b, index) => 
-                    <Dragable index={index} key={index} onDropped={onDrop}>
+                    <Dragable index={index} key={index} onDropped={moveOrCreateBlock}>
                         <DisplayBlock block={b} />
                     </Dragable>)}
             </div>

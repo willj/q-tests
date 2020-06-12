@@ -1,5 +1,6 @@
 import React from 'react';
 import './BlockLibrary.css';
+import {listBlocks} from './blocks/Blocks';
 
 const blocks = [
     {action: 'create', type: 'textBlock', title: 'Text Block'},
@@ -12,7 +13,7 @@ function BlockLibrary(){
         <div className="block-library">
             <h2>Block Library</h2>
 
-            {blocks.map((block, index) => 
+            {listBlocks().map((block, index) => 
                 <LibraryBlock block={block} key={index} />)}
         </div>
     );
@@ -21,7 +22,7 @@ function BlockLibrary(){
 function LibraryBlock({block}){
 
     function startDrag(e){
-        e.dataTransfer.setData("application/json", JSON.stringify(block));
+        e.dataTransfer.setData("application/json", JSON.stringify({action: 'create', ...block}));
     }
 
     return (

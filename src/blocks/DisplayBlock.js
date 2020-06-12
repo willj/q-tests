@@ -5,11 +5,11 @@ import VideoBlock from '../blocks/VideoBlock';
 
 function DisplayBlock({block}){
     switch (block.type){
-        case 'textBlock':
+        case 'text':
             return <TextBlock block={block} />;
-        case 'videoBlock':
+        case 'video':
             return <VideoBlock block={block} />;
-        case 'questionBlock':
+        case 'question':
             return <QuestionBlock block={block} />;
         default:
             return <></>;
