@@ -2,12 +2,6 @@ import React from 'react';
 import './BlockLibrary.css';
 import {listBlocks} from './blocks/Blocks';
 
-const blocks = [
-    {action: 'create', type: 'textBlock', title: 'Text Block'},
-    {action: 'create', type: 'videoBlock', title: 'Video'},
-    {action: 'create', type: 'questionBlock', title: 'Question'}
-];
-
 function BlockLibrary(){
     return (
         <div className="block-library">
