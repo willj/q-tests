@@ -1,14 +1,16 @@
+import {v4 as uuid} from 'uuid';
+
 const BLOCKS = [
-    { type: 'text', title: 'Text Block', text: 'this is a tb' },
+    { type: 'text', title: 'Text Block', text: '' },
     { type: 'video', title: 'Video', videoUrl: '' },
-    { type: 'question', title: 'Question', question: 'this is a q?', answers: [] },
+    { type: 'question', title: 'Question', question: 'Question Text?', answers: [{answerText: "A", isCorrect: false}] },
     { type: 'pageBreak', title: 'Page Break' }
 ];
 
 function createBlock(blockType){
     let template = BLOCKS.find((block) => block.type === blockType);
 
-    return template ? { ...template } : null;
+    return template ? { ...template, id: uuid() } : null;
 }
 
 function listBlocks(){

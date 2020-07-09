@@ -28,7 +28,12 @@ function Builder(){
         blocksCopy.splice(droppedOn, 0, thisBlock);
 
         setBlocks(blocksCopy);
+    }
 
+    function updateBlockData(block, index){
+        let blocksCopy = [...blocks];
+        blocksCopy[index] = block;
+        setBlocks(blocksCopy);
     }
 
     function onDragOver(e){
@@ -39,9 +44,9 @@ function Builder(){
         <div className="builder">
             <h2>Builder</h2>
             <div onDrop={moveOrCreateBlock} onDragOver={onDragOver} className="dropzone">
-                {blocks.map((b, index) => 
+                {blocks.map((block, index) => 
                     <Dragable index={index} key={index} onDropped={moveOrCreateBlock}>
-                        <DisplayBlock block={b} />
+                        <DisplayBlock block={block} index={index} onChange={updateBlockData} />
                     </Dragable>)}
             </div>
         </div>
