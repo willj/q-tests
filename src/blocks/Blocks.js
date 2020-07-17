@@ -1,5 +1,3 @@
-import {v4 as uuid} from 'uuid';
-
 const BLOCKS = [
     { type: 'text', title: 'Text Block', text: '' },
     { type: 'video', title: 'Video', videoUrl: '' },
@@ -10,7 +8,7 @@ const BLOCKS = [
 function createBlock(blockType){
     let template = BLOCKS.find((block) => block.type === blockType);
 
-    return template ? { ...template, id: uuid() } : null;
+    return template ? { ...template } : null;
 }
 
 function listBlocks(){
