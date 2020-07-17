@@ -6,7 +6,7 @@
 
 .dropzone {
     width: 700px;
-    height: 400px;
+    min-height: 400px;
     background-color: #cecece;
     border: 1px solid #333333;
     margin: 0 auto;
