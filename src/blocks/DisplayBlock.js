@@ -18,11 +18,15 @@ function DisplayBlock({block, index, onChange}){
         case 'text':
             return <TextBlock block={block} onChange={updateBlock} />;
         case 'video':
-            return <VideoBlock block={block} />;
+            return <VideoBlock block={block} onChange={updateBlock} />;
         case 'question':
             return <QuestionBlock block={block} onChange={updateBlock} />;
         default:
-            return <></>;
+            return (
+                <div>
+                    {block.title && <h2>{block.title}</h2>}
+                </div>
+            );
     }
 }
 

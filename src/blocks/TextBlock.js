@@ -3,13 +3,12 @@ import React from 'react';
 function TextBlock({block, onChange}){
 
     function updateBlock(e){
-        let updatedBlock = {...block, text: e.target.value};
-        onChange(updatedBlock);
+        onChange({...block, text: e.target.value});
     }
 
     return (
         <div>
-            <p>Text Block</p>
+            <h2>Text Block</h2>
             <textarea value={block.text} onChange={updateBlock}></textarea>
         </div>
     );

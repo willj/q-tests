@@ -35,7 +35,7 @@ function QuestionBlock({block, onChange}){
 
     return (
         <div>
-            <p>Question Block</p>
+            <h2>Question Block</h2>
             <label htmlFor="question">Question</label>
             <input type="text" id="question" value={block.question} onChange={updateQuestion} />
 
