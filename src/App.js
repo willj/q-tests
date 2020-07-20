@@ -1,16 +1,21 @@
 import React from 'react';
+import {BrowserRouter, Route, NavLink} from 'react-router-dom';
+import QuizBuilder from './QuizBuilder';
+import InitQuiz from './quiz/InitQuiz';
 import './App.css';
-import BlockLibrary from './BlockLibrary';
-import Builder from './Builder';
 
 function App() {
   return (
     <div className="app">
-      <h1>Quizee?</h1>
+      <BrowserRouter>
+        <header>
+          <h1>Quizee?</h1>
+          <p><NavLink to="/">Builder</NavLink> <NavLink to="/quiz">Quiz</NavLink></p>
+        </header>
 
-      <BlockLibrary />
-      <Builder />
-
+        <Route path="/" exact component={QuizBuilder} />
+        <Route path="/quiz" exact component={InitQuiz} />
+      </BrowserRouter>
     </div>
   );
 }

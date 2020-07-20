@@ -49,6 +49,8 @@ function Builder(){
                         <DisplayBlock block={block} index={index} onChange={updateBlockData} />
                     </Dragable>)}
             </div>
+            <h2>Output Code</h2>
+            <textarea value={JSON.stringify(blocks)} style={{width: '700px', height: '400px', marginTop: '30px'}} readOnly={true} /> 
         </div>
     );
 }
